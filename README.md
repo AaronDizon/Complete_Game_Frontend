@@ -21,7 +21,7 @@ Takes the video game Lizard project from unit 1 and vamps it up with additional 
 
 -When the game is over, I am redirected to the game over screen 
 
--From the game over screen, I can view my score as well as the links to the highscoresa and play again option are present 
+-From the game over screen, I can view my score as well as the links to the highscores and play-again option are present 
 
 -From the homepage with the game, I can select to view the top 10 high scores, redirecting to a different page
 
@@ -43,7 +43,7 @@ Takes the video game Lizard project from unit 1 and vamps it up with additional 
 | userRoute     | .get     | '/userId/scores/'                    |
 | userRoute     | .post    | '/:userId/score'                     |
 | skinsRoute    | .post    | '/skins/:skinId/user/:userId'        |
-| scoreRoute    | .get     | '/scores                             |
+| scoreRoute    | .get     | '/scores'                             |
 
 
 
