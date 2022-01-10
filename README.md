@@ -59,10 +59,8 @@ Takes the video game Lizard project from unit 1 and vamps it up with additional 
 
 -Successful gacha implementation
 
--password hashing 
-
 ## Stretch Goals
 
--Turn the Lizard game into a Snake game
+-password hashing 
 
--Sound effect during point aquisition
+-sound effect during point aquisition
