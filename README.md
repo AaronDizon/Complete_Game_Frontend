@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# Complete_Game_Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Overview
 
-## Available Scripts
+Takes the video game Lizard project from unit 1 and vamps it up with additional features such as User Auth weith CRUD operations, score keeping, highest scores display, and a simplified gacha system where one can change the skin of the lizard with whatever skins they have rolled.  
 
-In the project directory, you can run:
+### Wireframe
 
-### `npm start`
+![Wireframe](./images/Wireframe.png)
+![Wireframe](./images/Schema.png)
+![Wireframe](./images/Components_Chart.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## User Stories 
+-When I go to the site, I am sent to the homepage which just contains the Logo and the link to the login/signup. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+-I am able to successfully login
 
-### `npm test`
+-When logged in, the homepage contains the game 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-Pressing the start button initiates the game 
 
-### `npm run build`
+-When the game is over, I am redirected to the game over screen 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-From the game over screen, I can view my score as well as the links to the highscores and play-again option are present 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+-From the homepage with the game, I can select to view the top 10 high scores, redirecting to a different page
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+-From the homepage with the game, I can select to view my profile, from where I can view my user Info 
 
-### `npm run eject`
+-The user info contains my username(editable), email, password, token count, and all of the user's scores from their runs 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+-I am able to logout successfully by clicking the logout button from almost all the pages (except for the login and sign up forms)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Routes 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+|Routes                     | HTTP Verb                       | URL                            |
+| :----------------------: | ------------------------------- | ------------------------------- |
+| userRoute     | .post    | '/signup'                            |
+| userRoute     | .post    | '/login'                             |
+| userRoute     | .get     | '/verify'                            |
+| userRoute     | .get     | '/:userId/info'                      |
+| userRoute     | .get     | '/userId/scores/'                    |
+| userRoute     | .post    | '/:userId/score'                     |
+| skinsRoute    | .post    | '/skins/:skinId/user/:userId'        |
+| scoreRoute    | .get     | '/scores'                             |
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### MVP
 
-### Code Splitting
+-Functional Game
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+-User Auth
 
-### Analyzing the Bundle Size
+-Viewable high scores
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+-Viewable user info 
 
-### Making a Progressive Web App
+-Successful gacha implementation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+-password hashing 
 
-### Advanced Configuration
+## Stretch Goals
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+-Turn the Lizard game into a Snake game
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-Sound effect during point aquisition
