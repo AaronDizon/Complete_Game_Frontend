@@ -40,11 +40,21 @@ const Gamespace = () => {
     // console.log(direction)
     
     const gameStart = () => {
+        setLizard(initialLizard)
+        setClones(initialClones)
+        setScore(0)
         setDirection([20,0])
         console.log(direction)
         setSpeed(initialSpeed)
         setGameIsLive(true)
+        setGameOver(false)
         }
+    
+    const stopGame = () => {
+        setDirection([0,0])
+        setSpeed(null)
+        setGameIsLive(false)
+    }
 
     const gameLoop = () => {
         setLizard([(lizard[0]+direction[0]),(lizard[1]+direction[1])])
@@ -61,8 +71,19 @@ const Gamespace = () => {
             setLizard([lizard[0], 380])
         }
         if (checkCollision(lizard, food)) {
+            setScore(score+1)
             createFoodSpot()
             leaveClone()
+        }
+        for (let i = 0; i < clones.length; i++) {
+            if (checkCollision(lizard, clones[i])){
+                setGameOver(true)
+            }
+        }
+        if (gameOver) {
+            setDirection([0,0])
+            setSpeed(null)
+            setGameIsLive(false)
         }
     }
 
