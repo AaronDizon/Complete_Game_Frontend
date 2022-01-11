@@ -1,18 +1,15 @@
-import React from 'react'
+import { useState }from 'react'
+import Modal from 'react-modal'
 import Gamespace from '../components/Gamespace'
 
-const Gamepage = () => {
-    
-    
-    
-    
-    
+const Gamepage = (props) => {
     
     
     
     return (
         <div>
-            <Gamespace />
+            <Gamespace setGameState={props.setGameState} />
+            
         </div>
     )
 }
