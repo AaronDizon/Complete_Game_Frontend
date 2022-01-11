@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 const Gamespace = () => {
 
     const [score, setScore] = useState(0)
+    const [gameIsLive, setGameIsLive] = useState(false)
 
     const canvas = useRef();
     const ctx = useRef();
@@ -33,14 +34,13 @@ const Gamespace = () => {
     let rightId = 0;
     let leftId = 0;
     let downId = 0;
-    let gameIsLive = false;
     let gameScore = 0;
     let foodX;
     let foodY;
 
     const gameStart = () => {
             ctx.clearRect(0,0, canvas.width, canvas.height);
-            gameIsLive = true;
+            setGameIsLive(true);
             head.x = 0;
             head.y = 0;
             head.dx = 3;
@@ -170,6 +170,7 @@ const Gamespace = () => {
             createFoodSpot()
             growBodyFromLeft()
             //SET THE SCORE HERE
+            setScore(score+1)
         }
         if((head.x+20) >= canvas.width){
             head.x = 0;
@@ -208,6 +209,7 @@ const Gamespace = () => {
             createFoodSpot()
             growBodyFromBelow()
             //SET THE SCORE HERE
+            setScore(score+1)
         }   
         if(head.y <= 0) {
             head.y = canvas.height-20;
@@ -229,11 +231,11 @@ const Gamespace = () => {
         drawlizard();    
         keepFood();
         head.x += -head.dx;
-        if (gameScore === 5){
+        if (score === 5){
             head.dx = 4;
             head.dy = 4; 
         }
-        if (gameScore === 10){
+        if (score === 10){
             head.dx = 5;
             head.dy = 5; 
         }
@@ -248,6 +250,7 @@ const Gamespace = () => {
             createFoodSpot()
             growBodyFromRight()
             //SET THE SCORE HERE
+            setScore(score+1)
         }    
         if(head.x <= 0) {
             head.x = canvas.width-20;
@@ -286,6 +289,7 @@ const Gamespace = () => {
             createFoodSpot()
             growBodyFromAbove()
             //SET THE SCORE HERE
+            setScore(score+1)
             
         }
         if((head.y+20) >= canvas.height) {
