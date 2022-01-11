@@ -30,9 +30,9 @@ const Gamespace = () => {
         ctx.current.fillRect(food[0], food[1], 20, 20)
     }, [lizard, food]);
 
-    console.log(ctx)
-    console.log(food)
-    console.log(direction)
+    // console.log(ctx)
+    // console.log(food)
+    // console.log(direction)
     
     const gameStart = () => {
         setDirection([20,0])
@@ -43,6 +43,28 @@ const Gamespace = () => {
 
     const gameLoop = () => {
         setLizard([(lizard[0]+direction[0]),(lizard[1]+direction[1])])
+        if (lizard[0]=== 400) {
+            setLizard([0, (lizard[1])])
+        }
+        if ((lizard[0]+20)===0) {
+            setLizard([380, (lizard[1])])
+        }
+        if (lizard[1]===400) {
+            setLizard([lizard[0], 0])
+        }
+        if ((lizard[1]+20)===0) {
+            setLizard([lizard[0], 380])
+        }
+        if (checkCollision(lizard, food)) {
+            createFoodSpot()
+        }
+    }
+
+    const checkCollision = (box1, box2) => {
+        if (box1[0] === box2[0] && box1[1] === box2[1]) {
+            console.log('collision detected')
+            return true
+        }
     }
 
     // const drawlizard =() => {
@@ -112,7 +134,6 @@ const Gamespace = () => {
     }
 
     function createFoodSpot() {
-        ctx.current.fillStyle='#9a031e'
         setFood(
                 [
                     (Math.floor(Math.random()*380) + 1), 
@@ -123,10 +144,6 @@ const Gamespace = () => {
 
         
         
-    }
-    function keepFood() {
-        ctx.current.fillStyle='#9a031e'
-        ctx.current.fillRect( food.x, food.y, 20, 20)
     }
 
 
