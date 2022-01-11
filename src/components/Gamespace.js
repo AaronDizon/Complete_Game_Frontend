@@ -1,18 +1,22 @@
 import { useState, useEffect, useRef } from 'react'
+import { useInterval }from './useInterval'
 
 const Gamespace = () => {
 
     const initialLizard = [0,0]
-    const speed = 100
     const initialClones = []
     const initialFood = [200, 200]
+    const initialSpeed = 100
 
     const [score, setScore] = useState(0)
     const [gameIsLive, setGameIsLive] = useState(false)
     const [direction, setDirection] = useState([0,0])
     const [lizard, setLizard] = useState(initialLizard)
     const [food, setFood] = useState(initialFood)
+    const [speed, setSpeed] = useState(null)
+    const [gameOver, setGameOver] = useState(false)
 
+    useInterval(()=> gameLoop(), speed);
 
     const canvas = useRef();
     const ctx = useRef();
@@ -28,10 +32,18 @@ const Gamespace = () => {
 
     console.log(ctx)
     console.log(food)
+    console.log(direction)
     
     const gameStart = () => {
-        setDirection([1,0])
+        setDirection([20,0])
+        console.log(direction)
+        setSpeed(initialSpeed)
+        setGameIsLive(true)
         }
+
+    const gameLoop = () => {
+        setLizard([(lizard[0]+direction[0]),(lizard[1]+direction[1])])
+    }
 
     // const drawlizard =() => {
     //     ctx.current.fillStyle='#6FFFE9';
@@ -83,19 +95,19 @@ const Gamespace = () => {
     const changeDirection = (pressedKey) => {
         if (pressedKey.keyCode === 37){
             //move to the left
-            setDirection([-1,0]);
+            setDirection([-20,0]);
         }
         if (pressedKey.keyCode === 38){
             //move up
-            setDirection([0,-1]);
+            setDirection([0,-20]);
         }
         if (pressedKey.keyCode === 39){
             //move to the right   
-            setDirection([1,0]);
+            setDirection([20,0]);
         }
         if (pressedKey.keyCode === 40){
             //move down
-            setDirection([0,1]);
+            setDirection([0,20]);
         }
     }
 
