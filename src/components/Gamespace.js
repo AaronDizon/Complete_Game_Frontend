@@ -5,21 +5,22 @@ const Gamespace = () => {
     const [score, setScore] = useState(0)
     const [gameIsLive, setGameIsLive] = useState(false)
 
-    const canvas = useRef();
+    const canvasRef = useRef();
     const ctx = useRef();
     useEffect(()=> {
-        const context  = canvas.current.getContext('2d');
+        const canvas = canvasRef.current;
+        const context  = canvas.getContext('2d');
         ctx.current = context;
-    });
+    }, []);
 
-    
+    console.log(ctx)
 
     const head = {
         x: 0,
         y: 0,
         dx: 3,
         dy: 3,
-    }
+    } 
     
     let lizard =[];
 
@@ -39,7 +40,7 @@ const Gamespace = () => {
     let foodY;
 
     const gameStart = () => {
-            ctx.clearRect(0,0, canvas.width, canvas.height);
+            ctx.current.clearRect(0,0, canvas.width, canvas.height);
             setGameIsLive(true);
             head.x = 0;
             head.y = 0;
@@ -61,12 +62,12 @@ const Gamespace = () => {
         }
 
     const drawlizard =() => {
-        ctx.fillStyle='#6FFFE9';
-        ctx.fillRect(head.x, head.y, 20, 20)
-        ctx.fillStyle='white';
+        ctx.current.fillStyle='#6FFFE9';
+        ctx.current.fillRect(head.x, head.y, 20, 20)
+        ctx.current.fillStyle='white';
 
         for (let i = 0; i < lizard.length; i++){
-            ctx.fillRect(lizard[i].x, lizard[i].y, 20, 20);
+            ctx.current.fillRect(lizard[i].x, lizard[i].y, 20, 20);
         }
 
     }
@@ -133,8 +134,8 @@ const Gamespace = () => {
         
     }
     function keepFood() {
-        ctx.fillStyle='#9a031e'
-        ctx.fillRect( food.x, food.y, 20, 20)
+        ctx.current.fillStyle='#9a031e'
+        ctx.current.fillRect( food.x, food.y, 20, 20)
     }
 
     function checkGeneralCollision(head1, head2) {
@@ -147,7 +148,7 @@ const Gamespace = () => {
         }
     }
     function changedRight() {
-        ctx.clearRect(0,0, canvas.width, canvas.height);
+        ctx.current.clearRect(0,0, canvas.width, canvas.height);
         drawlizard();
         keepFood();
         head.x += head.dx;
@@ -187,7 +188,7 @@ const Gamespace = () => {
         }
     }
     function changedUp() {
-        ctx.clearRect(0,0, canvas.width, canvas.height);
+        ctx.current.clearRect(0,0, canvas.width, canvas.height);
         drawlizard();    
         keepFood();
         head.y += -head.dy;
@@ -227,7 +228,7 @@ const Gamespace = () => {
         
     }
     function changedLeft() {
-        ctx.clearRect(0,0, canvas.width, canvas.height);
+        ctx.current.clearRect(0,0, canvas.width, canvas.height);
         drawlizard();    
         keepFood();
         head.x += -head.dx;
@@ -267,7 +268,7 @@ const Gamespace = () => {
         }
     }
     function changedDown() {
-        ctx.clearRect(0,0, canvas.width, canvas.height);
+        ctx.current.clearRect(0,0, canvas.width, canvas.height);
         drawlizard();
         keepFood();
         head.y += head.dy;
@@ -327,9 +328,9 @@ const Gamespace = () => {
         <div className='gameContainer'>
              <h1 className='Title'>Lizard</h1>
              <h4 className='description'></h4>
-            <canvas ref= {canvas} className='canvas' width='400' height='400'></canvas>
+            <canvas ref={canvasRef} className='canvas' width='400' height='400'></canvas>
             <div className='container1'>
-                <button className='start'>Start</button>
+                <button className='start' onClick={()=>{gameStart()}}>Start</button>
                 <div className='score'>
                     <div className='scoreText'><strong>Score:</strong></div>
                     <div className='scoreNum'></div>
