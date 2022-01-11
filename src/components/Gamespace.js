@@ -2,118 +2,82 @@ import { useState, useEffect, useRef } from 'react'
 
 const Gamespace = () => {
 
-    const initialLizard = [[0,0]]
+    const initialLizard = [0,0]
     const speed = 100
+    const initialClones = []
+    const initialFood = [200, 200]
 
     const [score, setScore] = useState(0)
     const [gameIsLive, setGameIsLive] = useState(false)
-    const [direction, setDirection] = useState([1,0])
+    const [direction, setDirection] = useState([0,0])
+    const [lizard, setLizard] = useState(initialLizard)
+    const [food, setFood] = useState(initialFood)
+
 
     const canvas = useRef();
     const ctx = useRef();
     useEffect(()=> {
-    
         const context  = canvas.current.getContext('2d');
         ctx.current = context;
-    }, [foodX]);
+        ctx.current.clearRect(0,0, canvas.current.width, canvas.current.height)
+        ctx.current.fillStyle='#6FFFE9'
+        ctx.current.fillRect(lizard[0], lizard[1], 20, 20)
+        ctx.current.fillStyle='#9a031e'
+        ctx.current.fillRect(food[0], food[1], 20, 20)
+    }, [lizard, food]);
 
     console.log(ctx)
-
-    let head = {
-        x: 0,
-        y: 0,
-        dx: 3,
-        dy: 3,
-    } 
-    
-    let lizard =[];
-
-    const food = {
-        x: foodX,
-        y: foodY,
-    }
-
     console.log(food)
     
-
-    // State Variables 
-
-    let upId = 0;
-    let rightId = 0;
-    let leftId = 0;
-    let downId = 0;
-    let gameScore = 0;
-
-
     const gameStart = () => {
-            ctx.current.clearRect(0,0, canvas.current.width, canvas.current.height);
-            setGameIsLive(true);
-            head.x = 0;
-            head.y = 0;
-            head.dx = 3;
-            head.dy = 3;
-        
-            lizard = []
-            setScore(0)
-            
-            if (gameIsLive === true){
-                //console.log(`if true`)
-                console.log('working')
-                // document.body.addEventListener('keydown', changeDirection);
-                console.log(gameIsLive)
-                drawlizard();
-                
-            }
-            if (gameIsLive === false){
-                
-            }
+        setDirection([1,0])
         }
 
-    const drawlizard =() => {
-        ctx.current.fillStyle='#6FFFE9';
-        ctx.current.fillRect(head.x, head.y, 20, 20)
-        ctx.current.fillStyle='white';
+    // const drawlizard =() => {
+    //     ctx.current.fillStyle='#6FFFE9';
+    //     ctx.current.fillRect(head.x, head.y, 20, 20)
+    //     ctx.current.fillStyle='white';
 
-        for (let i = 0; i < lizard.length; i++){
-            ctx.current.fillRect(lizard[i].x, lizard[i].y, 20, 20);
-        }
+    //     for (let i = 0; i < lizard.length; i++){
+    //         ctx.current.fillRect(lizard[i].x, lizard[i].y, 20, 20);
+    //     }
 
-    }
+    // }
 
-    function growBodyFromLeft(){
-        const bodyPart = {
-            x: head.x-21, 
-            y: head.y,
+    // function growBodyFromLeft(){
+    //     const bodyPart = {
+    //         x: head.x-21, 
+    //         y: head.y,
       
-        }
-        lizard.push(bodyPart)
-        console.log(lizard)
-     }
-    function growBodyFromRight(){
-        const bodyPart = {
-            x: head.x+21, 
-            y: head.y, 
+    //     }
+    //     lizard.push(bodyPart)
+    //     console.log(lizard)
+    //  }
+    // function growBodyFromRight(){
+    //     const bodyPart = {
+    //         x: head.x+21, 
+    //         y: head.y, 
      
-        }
-        lizard.push(bodyPart)
-        //console.log(lizard)
-     }
-    function growBodyFromBelow(){
-        const bodyPart = {
-            x: head.x, 
-            y: head.y+21, 
-        }
-        lizard.push(bodyPart)
-        //console.log(lizard)
-     }
-    function growBodyFromAbove(){
-        const bodyPart = {
-            x: head.x, 
-            y: head.y-21, 
-        }
-        lizard.push(bodyPart)
-        //console.log(lizard)
-     }
+    //     }
+    //     lizard.push(bodyPart)
+    //     //console.log(lizard)
+    //  }
+    // function growBodyFromBelow(){
+    //     const bodyPart = {
+    //         x: head.x, 
+    //         y: head.y+21, 
+    //     }
+    //     lizard.push(bodyPart)
+    //     //console.log(lizard)
+    //  }
+    // function growBodyFromAbove(){
+    //     const bodyPart = {
+    //         x: head.x, 
+    //         y: head.y-21, 
+    //     }
+    //     lizard.push(bodyPart)
+    //     //console.log(lizard)
+    //  }
   
 
     const changeDirection = (pressedKey) => {
@@ -137,10 +101,15 @@ const Gamespace = () => {
 
     function createFoodSpot() {
         ctx.current.fillStyle='#9a031e'
-        setFoodX(Math.floor(Math.random()*380) + 1)
-        setFoodY(Math.floor(Math.random()*380) + 1)
-        food.x = foodX;
-        food.y = foodY;
+        setFood(
+                [
+                    (Math.floor(Math.random()*380) + 1), 
+                    (Math.floor(Math.random()*380) + 1)
+                ]
+            
+            )
+
+        
         
     }
     function keepFood() {
@@ -168,6 +137,22 @@ const Gamespace = () => {
 
 
 export default Gamespace
+
+
+    // let head = {
+    //     x: 0,
+    //     y: 0,
+    //     dx: 3,
+    //     dy: 3,
+    // } 
+
+  // // State Variables 
+
+    // let upId = 0;
+    // let rightId = 0;
+    // let leftId = 0;
+    // let downId = 0;
+    // let gameScore = 0;
 
 // function checkGeneralCollision(head1, head2) {
 //     if((head1.x+20) >= head2.x && (head1.x+20) <= (head2.x+20) && head1.y >= head2.y && head1.y <= (head2.y+20) || 
