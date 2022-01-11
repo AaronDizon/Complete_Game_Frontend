@@ -136,8 +136,10 @@ const Gamespace = () => {
     function createFoodSpot() {
         setFood(
                 [
-                    (Math.floor(Math.random()*380) + 1), 
-                    (Math.floor(Math.random()*380) + 1)
+                    // (Math.floor(Math.random()*20)), 
+                    // (Math.floor(Math.random()*20))
+                    Math.floor(Math.random() * (20))*20,
+                    Math.floor(Math.random() * (20))*20
                 ]
             
             )
