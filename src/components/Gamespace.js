@@ -4,12 +4,14 @@ const Gamespace = () => {
 
     const [score, setScore] = useState(0)
     const [gameIsLive, setGameIsLive] = useState(false)
+    const [foodX, setFoodX] = useState(200)
+    const [foodY, setFoodY] = useState(200)
 
-    const canvasRef = useRef();
+    const canvas = useRef();
     const ctx = useRef();
     useEffect(()=> {
-        const canvas = canvasRef.current;
-        const context  = canvas.getContext('2d');
+    
+        const context  = canvas.current.getContext('2d');
         ctx.current = context;
     }, []);
 
@@ -25,9 +27,12 @@ const Gamespace = () => {
     let lizard =[];
 
     const food = {
-        x: Math.floor(Math.random()*380) + 1,
-        y: Math.floor(Math.random()*380) + 1,
+        x: foodX,
+        y: foodY,
     }
+
+    console.log(food)
+    
 
     // State Variables 
 
@@ -36,11 +41,10 @@ const Gamespace = () => {
     let leftId = 0;
     let downId = 0;
     let gameScore = 0;
-    let foodX;
-    let foodY;
+
 
     const gameStart = () => {
-            ctx.current.clearRect(0,0, canvas.width, canvas.height);
+            
             setGameIsLive(true);
             head.x = 0;
             head.y = 0;
@@ -49,12 +53,15 @@ const Gamespace = () => {
         
             lizard = []
             setScore(0)
-            //console.log(gameIsLive)
+            console.log(gameIsLive)
+            ctx.current.clearRect(0,0, canvas.current.width, canvas.current.height);
+            drawlizard();
             
             if (gameIsLive === true){
                 //console.log(`if true`)
-                document.body.addEventListener('keydown', changeDirection);
-        
+                console.log('working')
+                // document.body.addEventListener('keydown', changeDirection);
+                
             }
             if (gameIsLive === false){
                 
@@ -128,15 +135,18 @@ const Gamespace = () => {
     }
 
     function createFoodSpot() {
-        ctx.fillStyle='#9a031e'
-        food.x = Math.floor(Math.random()*380) + 1
-        food.y= Math.floor(Math.random()*380) + 1
+        ctx.current.fillStyle='#9a031e'
+        setFoodX(Math.floor(Math.random()*380) + 1)
+        setFoodY(Math.floor(Math.random()*380) + 1)
+        food.x = foodX;
+        food.y = foodY;
         
     }
     function keepFood() {
         ctx.current.fillStyle='#9a031e'
-        ctx.current.fillRect( food.x, food.y, 20, 20)
+        ctx.current.fillRect( foodX, foodY, 20, 20)
     }
+
 
     function checkGeneralCollision(head1, head2) {
         if((head1.x+20) >= head2.x && (head1.x+20) <= (head2.x+20) && head1.y >= head2.y && head1.y <= (head2.y+20) || 
@@ -148,7 +158,7 @@ const Gamespace = () => {
         }
     }
     function changedRight() {
-        ctx.current.clearRect(0,0, canvas.width, canvas.height);
+        ctx.current.clearRect(0,0, canvas.current.width, canvas.current.height);
         drawlizard();
         keepFood();
         head.x += head.dx;
@@ -163,7 +173,7 @@ const Gamespace = () => {
         
         for (let i = 0; i < lizard.length; i++){
             if (checkGeneralCollision(head, lizard[i]) === true){
-                gameIsLive = false;
+                setGameIsLive(false);
                 console.log(gameIsLive);
             }
         }
@@ -173,7 +183,7 @@ const Gamespace = () => {
             //SET THE SCORE HERE
             setScore(score+1)
         }
-        if((head.x+20) >= canvas.width){
+        if((head.x+20) >= canvas.current.width){
             head.x = 0;
         }
         noAcceleration();
@@ -188,7 +198,7 @@ const Gamespace = () => {
         }
     }
     function changedUp() {
-        ctx.current.clearRect(0,0, canvas.width, canvas.height);
+        ctx.current.clearRect(0,0, canvas.current.width, canvas.current.height);
         drawlizard();    
         keepFood();
         head.y += -head.dy;
@@ -213,7 +223,7 @@ const Gamespace = () => {
             setScore(score+1)
         }   
         if(head.y <= 0) {
-            head.y = canvas.height-20;
+            head.y = canvas.current.height-20;
         }
         noAcceleration();
     
@@ -228,7 +238,7 @@ const Gamespace = () => {
         
     }
     function changedLeft() {
-        ctx.current.clearRect(0,0, canvas.width, canvas.height);
+        ctx.current.clearRect(0,0, canvas.current.width, canvas.current.height);
         drawlizard();    
         keepFood();
         head.x += -head.dx;
@@ -242,7 +252,7 @@ const Gamespace = () => {
         }
         for (let i = 0; i < lizard.length; i++){
             if (checkGeneralCollision(head, lizard[i]) === true){
-                gameIsLive = false;
+                setGameIsLive(false);
                 console.log(gameIsLive);
             }
         }
@@ -254,7 +264,7 @@ const Gamespace = () => {
             setScore(score+1)
         }    
         if(head.x <= 0) {
-            head.x = canvas.width-20;
+            head.x = canvas.current.width-20;
         }
         noAcceleration();
     
@@ -268,7 +278,7 @@ const Gamespace = () => {
         }
     }
     function changedDown() {
-        ctx.current.clearRect(0,0, canvas.width, canvas.height);
+        ctx.current.clearRect(0,0, canvas.current.width, canvas.current.height);
         drawlizard();
         keepFood();
         head.y += head.dy;
@@ -282,7 +292,7 @@ const Gamespace = () => {
         }
         for (let i = 0; i < lizard.length; i++){
             if (checkGeneralCollision(head, lizard[i]) === true){
-                gameIsLive = false;
+                setGameIsLive(false);
                 console.log(gameIsLive);
             }
         }
@@ -293,7 +303,7 @@ const Gamespace = () => {
             setScore(score+1)
             
         }
-        if((head.y+20) >= canvas.height) {
+        if((head.y+20) >= canvas.current.height) {
             head.y = 0;
         }
         noAcceleration();
@@ -325,15 +335,15 @@ const Gamespace = () => {
     
 
     return (
-        <div className='gameContainer'>
+        <div className='gameContainer' role='button' tabIndex='0' onKeyDown={e => changeDirection(e)}>
              <h1 className='Title'>Lizard</h1>
              <h4 className='description'></h4>
-            <canvas ref={canvasRef} className='canvas' width='400' height='400'></canvas>
+            <canvas ref={canvas} className='canvas' width='400' height='400'></canvas>
             <div className='container1'>
                 <button className='start' onClick={()=>{gameStart()}}>Start</button>
                 <div className='score'>
                     <div className='scoreText'><strong>Score:</strong></div>
-                    <div className='scoreNum'></div>
+                    <div className='scoreNum'> {score} </div>
                 </div>
             </div>
         </div>
