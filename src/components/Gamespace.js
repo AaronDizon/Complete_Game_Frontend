@@ -12,6 +12,7 @@ const Gamespace = () => {
     const [gameIsLive, setGameIsLive] = useState(false)
     const [direction, setDirection] = useState([0,0])
     const [lizard, setLizard] = useState(initialLizard)
+    const [clones, setClones] = useState(initialClones)
     const [food, setFood] = useState(initialFood)
     const [speed, setSpeed] = useState(null)
     const [gameOver, setGameOver] = useState(false)
@@ -26,6 +27,10 @@ const Gamespace = () => {
         ctx.current.clearRect(0,0, canvas.current.width, canvas.current.height)
         ctx.current.fillStyle='#6FFFE9'
         ctx.current.fillRect(lizard[0], lizard[1], 20, 20)
+        ctx.current.fillStyle='white'
+        for (let i = 0; i < clones.length; i++){
+            ctx.current.fillRect(clones[i][0], clones[i][1], 20, 20)
+        }
         ctx.current.fillStyle='#9a031e'
         ctx.current.fillRect(food[0], food[1], 20, 20)
     }, [lizard, food]);
@@ -57,6 +62,7 @@ const Gamespace = () => {
         }
         if (checkCollision(lizard, food)) {
             createFoodSpot()
+            leaveClone()
         }
     }
 
@@ -135,17 +141,22 @@ const Gamespace = () => {
 
     function createFoodSpot() {
         setFood(
-                [
-                    // (Math.floor(Math.random()*20)), 
-                    // (Math.floor(Math.random()*20))
-                    Math.floor(Math.random() * (20))*20,
-                    Math.floor(Math.random() * (20))*20
-                ]
-            
+                [Math.floor(Math.random() * (20))*20, 
+                Math.floor(Math.random() * (20))*20]
             )
+    }
 
+    function leaveClone() {
+        let cloneArray = [...clones]
+        let newClone = lizard
+        cloneArray.push(newClone)
+        setClones(cloneArray)
+
+        //if snake moving leftwards
         
-        
+        //if snake moving up
+        //if snake moving rightwards
+        //if snake moving down
     }
 
 
