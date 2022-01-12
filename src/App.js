@@ -9,6 +9,7 @@ import Startingpage from './pages/Startingpage';
 import Gamepage from './pages/Gamepage'
 import GameOver from './pages/GameOver';
 import Signup from './pages/Signup';
+import Login from './pages/Login';
 
 function App() {
 
@@ -22,7 +23,7 @@ function App() {
   const fetchUser = () => {
     const userId = localStorage.getItem('userId')
     if (userId) {
-      axios.get(`${eng.BACKEND_URL}/user/verify`, {
+      axios.get(`${env.BACKEND_URL}/user/verify`, {
         headers: {
           Authorization: userId
         }
@@ -41,7 +42,7 @@ function App() {
       <Routes>
         <Route path ='/' element= {<Startingpage />} />
         <Route path ='/gamepage' element= 
-        { !user.id
+        { user === []
         ?
         <Navigate to='/' />
         :
@@ -56,7 +57,7 @@ function App() {
         }
         />
         <Route path='/login' element=
-        { user.id 
+        { user != []
         ?
         <Navigate to='/gamepage' />
         :

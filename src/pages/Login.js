@@ -21,8 +21,8 @@ const Login = () => {
         .then((response) => {
             console.log(response)
 
-            localStorage.setItem('userId', response.data.user)
-            setUser(response.data.user)
+            localStorage.setItem('userId', response.data.userResponse.id)
+            setUser(response.data.userResponse)
 
         })
     }

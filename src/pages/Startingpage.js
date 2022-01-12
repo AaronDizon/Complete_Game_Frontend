@@ -10,8 +10,8 @@ const Startingpage = () => {
         <div>
             <h1>Lizard</h1>
             <div>
-            <link className='signupLink' to='/Signup'>Signup</link>
-            <link className='loginLink' to='/Login'>Signup</link>
+            <Link className='signupLink' to='/Signup'>Signup</Link>
+            <Link className='loginLink' to='/Login'>Login</Link>
             </div>
         </div>
     )
