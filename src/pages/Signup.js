@@ -22,9 +22,9 @@ const Signup = () => {
         .then((response) => {
             console.log(response.data.id)
         
-        localStorage.setItem('userId', response.data.id)
+        localStorage.setItem('userId', response.data.userResponse.id)
 
-        setUser(response.data)
+        setUser(response.data.useResponse)
         
         })
 
