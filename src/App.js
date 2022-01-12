@@ -57,7 +57,7 @@ function App() {
         }
         />
         <Route path='/login' element=
-        { user != []
+        { user.id
         ?
         <Navigate to='/gamepage' />
         :

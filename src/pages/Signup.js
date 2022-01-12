@@ -12,19 +12,19 @@ const Signup = () => {
     const [ user, setUser ] = userState
 
     const [email, setEmail] = useState('')
-    const [name, setName] = useState('')
+    const [username, setUserame] = useState('')
     const [password, setPassword] = useState('')
 
     const signupForm = (e) => {
         
         e.preventDefault()
-        axios.post(`${env.BACKEND_URL}/user/signup`, { name, email, password})
+        axios.post(`${env.BACKEND_URL}/user/signup`, { username, email, password})
         .then((response) => {
-            console.log(response.data.id)
+        console.log(response.data.userResponse)
         
         localStorage.setItem('userId', response.data.userResponse.id)
 
-        setUser(response.data.useResponse)
+        setUser(response.data.userResponse)
         
         })
 
@@ -37,7 +37,7 @@ const Signup = () => {
         <form className="LgnFrmCont" onSubmit={signupForm}>
             <div className='formInput'>
                 <label htmlFor="name" id='userName'>User Name:</label>
-                <input value={name} onChange={(e) => setName(e.target.value)} />
+                <input value={username} onChange={(e) => setUserame(e.target.value)} />
             </div>
             <div className='formInput'>
                 <label htmlFor="email">Email:</label>
