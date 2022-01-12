@@ -131,6 +131,43 @@ const Gamespace = (props) => {
         cloneArray.push(newClone)
         setClones(cloneArray)
     }
+
+
+    //___________________________
+
+//     Array.prototype.insert = function (index, item) {
+//         this.splice(index, 0, item);
+//     } 
+
+//  console.log('hello')
+// let array1 = [10, 5, 7, 2, 4, 3, 11]
+// let array2 = []
+// for (let i = 0 ; i < array1.length; i++) {
+//   array2.push(0)
+// }
+// console.log(array2)
+
+// for (let i = 0; i < array1.length; i++){
+
+//   for (let j = 0; j < array1.length; j++){
+//     if (array1[i] > array2[j]){
+//       array2.insert(j,array1[i])
+//       break
+//     }
+//   }
+// }
+
+// const scoreArray = array2.slice(0,10)
+
+// console.log(array2)
+// console.log(scoreArray)
+
+// console.log('yo')
+
+    //___________________________
+
+
+
    
     return (
         <div className='gameContainer' role='button' tabIndex='0' onKeyDown={e => changeDirection(e)}>
@@ -144,11 +181,13 @@ const Gamespace = (props) => {
                     <div className='scoreNum'> {score} </div>
                 </div>
             </div>
-            <Modal className='modal' isOpen={modalIsOpen}>
-                <h1>GAME OVER</h1>
-                <h2>Your Score:   {score}</h2>
-                <button className='start' onClick={()=>{setModalIsOpen(false)}}>Play Again?</button>
-            </Modal>
+            <div className="modalContainer">
+                <Modal className='modal' isOpen={modalIsOpen}>
+                    <h1>GAME OVER</h1>
+                    <h2>Your Score:   {score}</h2>
+                    <button className='start' onClick={()=>{setModalIsOpen(false)}}>Play Again?</button>
+                </Modal>
+            </div>
         </div>
     )
 }
