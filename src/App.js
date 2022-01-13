@@ -10,6 +10,7 @@ import Gamepage from './pages/Gamepage'
 import GameOver from './pages/GameOver';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Highscores from './pages/Highscores';
 
 function App() {
 
@@ -63,6 +64,7 @@ function App() {
         :
         <Login /> 
         } />
+        <Route path ='/highscores' element={<Highscores />} />
 
       </Routes>
     </div>
