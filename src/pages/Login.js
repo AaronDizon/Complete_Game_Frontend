@@ -10,7 +10,7 @@ const Login = () => {
 
     const value = useContext(UserContext)
     const { userState } = useContext(UserContext)
-    const [ user, setUser ] = userState
+    const [ userId, setUserId ] = userState
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -19,11 +19,10 @@ const Login = () => {
         e.preventDefault()
         axios.post(`${env.BACKEND_URL}/user/login`, {email, password})
         .then((response) => {
-            console.log(response)
-
-            localStorage.setItem('userId', response.data.userResponse.id)
-            setUser(response.data.userResponse)
-
+            console.log(response.data.userId)
+            setUserId(response.data.userId)
+            localStorage.setItem('userId', response.data.userId)
+            console.log(userId)
         })
     }
 

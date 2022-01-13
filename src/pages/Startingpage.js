@@ -5,7 +5,7 @@ import { UserContext } from '../context/UserContext'
 
 const Startingpage = () => {
     const { userState } = useContext(UserContext)
-    const [ user, setUser ] = userState
+    const [ userId, setUserId ] = userState
     return (
         <div>
             <h1>Lizard</h1>

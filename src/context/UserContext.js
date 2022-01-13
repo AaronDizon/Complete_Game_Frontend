@@ -4,10 +4,10 @@ const UserContext = createContext()
 
 const UserProvider = ({children}) => {
 
-    const [user, setUser] = useState('')
+    const [userId, setUserId] = useState('')
 
     const state = {
-        userState: [user, setUser]
+        userState: [userId, setUserId]
     }
 
     return (

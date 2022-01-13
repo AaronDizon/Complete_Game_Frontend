@@ -9,7 +9,7 @@ const Signup = () => {
 
     const value = useContext(UserContext)
     const { userState } = useContext(UserContext)
-    const [ user, setUser ] = userState
+    const [ userId, setUserId ] = userState
 
     const [email, setEmail] = useState('')
     const [username, setUserame] = useState('')
@@ -22,9 +22,9 @@ const Signup = () => {
         .then((response) => {
         console.log(response.data.userResponse)
         
-        localStorage.setItem('userId', response.data.userResponse.id)
+        localStorage.setItem('userId', response.data.userId)
 
-        setUser(response.data.userResponse)
+        setUserId(response.data.userId)
         
         })
 

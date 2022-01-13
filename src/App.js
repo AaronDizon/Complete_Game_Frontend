@@ -16,7 +16,7 @@ function App() {
 
   const value = useContext(UserContext)
   const { userState } = useContext(UserContext)
-  const [user, setUser ] = userState
+  const [userId, setUserId ] = userState
 
   const [gameState, setGameState] = useState(true)
   const [playerScore, setPlayerScore] = useState(0)
@@ -43,14 +43,14 @@ function App() {
       <Routes>
         <Route path ='/' element= {<Startingpage />} />
         <Route path ='/gamepage' element= 
-        { !user.id
+        { userId === [] || !userId 
         ?
         <Navigate to='/' />
         :
         <Gamepage setGameState={setGameState} setPlayerScore={setPlayerScore}/>
         } />
         <Route path ='signup' element = 
-        { user.id
+        { userId != []
         ?
         <Navigate to='/gamepage' />
         :
@@ -58,7 +58,7 @@ function App() {
         }
         />
         <Route path='/login' element=
-        { user.id
+        { userId != []
         ?
         <Navigate to='/gamepage' />
         :

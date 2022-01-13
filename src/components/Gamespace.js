@@ -8,29 +8,9 @@ import env from 'react-dotenv';
 const Gamespace = (props) => {
 
     const { userState } = useContext(UserContext)
-    const [ user, setUser ] = userState
+    const [ userId, setUserId ] = userState
 
-    console.log(user.id)
-
-    const postScore = async() => {
-        try {
-            const makeDate = new Date()
-            const date = (makeDate.toDateString())
-            axios.post(`${env.BACKEND_URL}/user/${user.id}/score`, { score, date })
-            .then((response) => {
-                console.log(`score posted on ${date}`)
-            })
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
-
-
-
-
-//----------------------------Game Logic----------------------------
-
+//----------------------------Game States----------------------------
     const initialLizard = [0,0]
     const initialClones = []
     const initialFood = [200, 200]
@@ -46,6 +26,29 @@ const Gamespace = (props) => {
     const [gameOver, setGameOver] = useState(false)
 
     const [modalIsOpen, setModalIsOpen] = useState(false)
+//-------------------------------------------------------------------
+    console.log(userId)
+
+    const postScore = async() => {
+        try {
+            const makeDate = new Date()
+            const date = (makeDate.toDateString())
+            axios.post(`${env.BACKEND_URL}/user/${userId}/score`, { score, date })
+            .then((response) => {
+                console.log(`score posted on ${date}`)
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+
+
+
+
+//----------------------------Game Logic----------------------------
+
+    
 
     useInterval(()=> gameLoop(), speed);
 
