@@ -1,17 +1,37 @@
 import React from 'react'
-import { useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../context/UserContext'
 import { Link,  } from "react-router-dom"
+import  axios  from 'axios';
+import env from 'react-dotenv';
 
 const Navbar = () => {
     const { userState } = useContext(UserContext)
-    const [ user, setUser ] = userState
+    const [ userId, setUserId ] = userState
+    const [ userInfo, setUserInfo] = userState
+
+    const [user, setUser] = useState()
+
+    const getInfo = async() => {
+        try {
+            axios.get(`${env.BACKEND_URL}/user/${userId}/info`)
+            .then((response) => {
+                console.log(response)
+                setUserInfo(response.data)
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(getInfo, [])
     return (
         <div>
-             <p className="navUserName"> { user.username } </p>
+             <Link className="navUserName" to='/userprofile' > { user } </Link>
              <p className='logout' onClick={()=> {
                 localStorage.removeItem('userId')
-                setUser({})
+                setUserId({})
+                setUser()
             }}>Logout</p>
             <Link className='highscorePageLink' to='/highscores'>Highscores</Link>
         </div>

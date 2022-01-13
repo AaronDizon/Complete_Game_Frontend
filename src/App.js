@@ -11,15 +11,18 @@ import GameOver from './pages/GameOver';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Highscores from './pages/Highscores';
+import UserProfile from './components/UserProfile';
 
 function App() {
 
   const value = useContext(UserContext)
   const { userState } = useContext(UserContext)
-  const [userId, setUserId ] = userState
+  const [userId, setUserId ] = userIdState
 
   const [gameState, setGameState] = useState(true)
   const [playerScore, setPlayerScore] = useState(0)
+
+  const [userInfo, setUserInfo] = useState()
 
   const fetchUser = () => {
     const userId = localStorage.getItem('userId')
@@ -35,6 +38,20 @@ function App() {
       })
     }
   }
+
+  const getInfo = async() => {
+        try {
+            axios.get(`${env.BACKEND_URL}/user/${userId}/info`)
+            .then((response) => {
+                console.log(response)
+                setUserInfo(response.data.username)
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(getInfo, [])
 
   useEffect(fetchUser, [])
 
@@ -65,6 +82,14 @@ function App() {
         <Login /> 
         } />
         <Route path ='/highscores' element={<Highscores />} />
+
+        <Route path='/userprofile' element=
+        { userId === [] || !userId 
+        ?
+        <Navigate to='/' />
+        :
+        <UserProfile userInfo={userInfo}/> 
+        } />
 
       </Routes>
     </div>

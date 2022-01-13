@@ -10,6 +10,7 @@ const Gamespace = (props) => {
     const { userState } = useContext(UserContext)
     const [ userId, setUserId ] = userState
 
+
 //----------------------------Game States----------------------------
     const initialLizard = [0,0]
     const initialClones = []
@@ -27,7 +28,6 @@ const Gamespace = (props) => {
 
     const [modalIsOpen, setModalIsOpen] = useState(false)
 //-------------------------------------------------------------------
-    console.log(userId)
 
     const postScore = async() => {
         try {
