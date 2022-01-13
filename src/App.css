@@ -52,3 +52,17 @@
   font-family: 'Press Start 2P', cursive;
 }
 
+.highscorePage {
+  display: flex; 
+  flex-direction: column;
+  justify-content:center;
+  
+
+}
+
+.scoreRow {
+  width: 500px;
+  display: flex; 
+  justify-content: space-evenly;
+
+}

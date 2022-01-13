@@ -4,6 +4,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import  axios  from 'axios';
 import env from 'react-dotenv';
 import { Link,  } from "react-router-dom"
+import SingleScoreTemplate from '../components/SingleScoreTemplate';
 
 const Highscores = () => {
 
@@ -32,6 +33,7 @@ const Highscores = () => {
             topTen.pop()
 
             console.log(topTen)
+            setHighscores(topTen)
         } catch (err) {
             console.log(err)
         }
@@ -39,10 +41,20 @@ const Highscores = () => {
     useEffect(fetchScores, [])
 
     return (
-        <div>
-             <Link className='backToGamepage' to='/gamepage'>Go Back</Link>
-            <h1>Highest Scores</h1>
+        <div >
+            <Link className='backToGamepage' to='/gamepage'>Go Back</Link>
+            <div className= 'highscorePage'>
+                <h1>Highest Scores</h1>
+                <div className='scoreRowContainer'>
+                {highscores.map((score, i) => {
+                        return (
+                            <SingleScoreTemplate score={score} />
+                        )
+                    })}
+                </div>
+            </div>
         </div>
+        
     )
 }
 
