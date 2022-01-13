@@ -1,8 +1,35 @@
-import { useState, useEffect, useRef } from 'react'
-import Modal from 'react-modal'
-import { useInterval }from './useInterval'
+import { useState, useEffect, useContext, useRef } from 'react';
+import Modal from 'react-modal';
+import { useInterval }from './useInterval';
+import { UserContext } from '../context/UserContext'
+import  axios  from 'axios';
+import env from 'react-dotenv';
 
 const Gamespace = (props) => {
+
+    const { userState } = useContext(UserContext)
+    const [ user, setUser ] = userState
+
+    console.log(user.id)
+
+    const postScore = async() => {
+        try {
+            const makeDate = new Date()
+            const date = (makeDate.toDateString())
+            axios.post(`${env.BACKEND_URL}/user/${user.id}/score`, { score, date })
+            .then((response) => {
+                console.log(`score posted on ${date}`)
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+
+
+
+
+//----------------------------Game Logic----------------------------
 
     const initialLizard = [0,0]
     const initialClones = []
@@ -89,6 +116,7 @@ const Gamespace = (props) => {
             setSpeed(null)
             setGameIsLive(false)
             setModalIsOpen(true)
+            postScore()
         }
     }
 
@@ -131,42 +159,6 @@ const Gamespace = (props) => {
         cloneArray.push(newClone)
         setClones(cloneArray)
     }
-
-
-    //___________________________
-
-//     Array.prototype.insert = function (index, item) {
-//         this.splice(index, 0, item);
-//     } 
-
-//  console.log('hello')
-// let array1 = [10, 5, 7, 2, 4, 3, 11]
-// let array2 = []
-// for (let i = 0 ; i < array1.length; i++) {
-//   array2.push(0)
-// }
-// console.log(array2)
-
-// for (let i = 0; i < array1.length; i++){
-
-//   for (let j = 0; j < array1.length; j++){
-//     if (array1[i] > array2[j]){
-//       array2.insert(j,array1[i])
-//       break
-//     }
-//   }
-// }
-
-// const scoreArray = array2.slice(0,10)
-
-// console.log(array2)
-// console.log(scoreArray)
-
-// console.log('yo')
-
-    //___________________________
-
-
 
    
     return (
