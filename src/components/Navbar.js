@@ -36,8 +36,8 @@ const Navbar = () => {
              <Link className="navUserName" to='/userprofile' > { userInfo.username } </Link>
              <p className='logout' onClick={()=> {
                 localStorage.removeItem('userId')
-                setUserId({})
-                setUser()
+                setUserId('')
+                setUserInfo([])
             }}>Logout</p>
             <Link className='highscorePageLink' to='/highscores'>Highscores</Link>
         </div>

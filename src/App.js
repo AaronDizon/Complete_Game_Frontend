@@ -68,7 +68,7 @@ function App() {
         <Gamepage setGameState={setGameState} setPlayerScore={setPlayerScore}/>
         } />
         <Route path ='signup' element = 
-        { userId != []
+        { userId != [] 
         ?
         <Navigate to='/gamepage' />
         :
