@@ -8,8 +8,8 @@ import env from 'react-dotenv'
 const Signup = () => {
 
     const value = useContext(UserContext)
-    const { userState } = useContext(UserContext)
-    const [ userId, setUserId ] = userState
+    const { userIdState } = useContext(UserContext)
+    const [ userId, setUserId ] = userIdState
 
     const [email, setEmail] = useState('')
     const [username, setUserame] = useState('')

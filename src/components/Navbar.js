@@ -6,9 +6,9 @@ import  axios  from 'axios';
 import env from 'react-dotenv';
 
 const Navbar = () => {
-    const { userState } = useContext(UserContext)
-    const [ userId, setUserId ] = userState
-    const [ userInfo, setUserInfo] = userState
+    const { userIdState, userInfoState } = useContext(UserContext)
+    const [ userId, setUserId ] = userIdState
+    const [ userInfo, setUserInfo] = userInfoState
 
     const [user, setUser] = useState()
 
@@ -17,7 +17,13 @@ const Navbar = () => {
             axios.get(`${env.BACKEND_URL}/user/${userId}/info`)
             .then((response) => {
                 console.log(response)
-                setUserInfo(response.data)
+                const userInformation = {
+                    "username":response.data.username,
+                    "email": response.data.email, 
+                    "tokens": response.data.tokens,
+                    "scores": response.data.scores
+                }
+                setUserInfo(userInformation)
             })
         } catch (err) {
             console.log(err)
@@ -27,7 +33,7 @@ const Navbar = () => {
     useEffect(getInfo, [])
     return (
         <div>
-             <Link className="navUserName" to='/userprofile' > { user } </Link>
+             <Link className="navUserName" to='/userprofile' > { userInfo.username } </Link>
              <p className='logout' onClick={()=> {
                 localStorage.removeItem('userId')
                 setUserId({})

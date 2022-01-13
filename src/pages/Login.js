@@ -9,9 +9,10 @@ import env from 'react-dotenv'
 const Login = () => {
 
     const value = useContext(UserContext)
-    const { userState } = useContext(UserContext)
-    const [ userId, setUserId ] = userState
-
+    const { userIdState, userInfoState } = useContext(UserContext)
+    const [ userId, setUserId ] = userIdState
+    const [ userInfo, setUserInfo] = userInfoState
+    
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 

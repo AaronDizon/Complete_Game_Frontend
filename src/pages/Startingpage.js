@@ -4,8 +4,8 @@ import { useContext } from 'react';
 import { UserContext } from '../context/UserContext'
 
 const Startingpage = () => {
-    const { userState } = useContext(UserContext)
-    const [ userId, setUserId ] = userState
+    const { userIdState } = useContext(UserContext)
+    const [ userId, setUserId ] = userIdState
     return (
         <div>
             <h1>Lizard</h1>

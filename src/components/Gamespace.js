@@ -7,8 +7,9 @@ import env from 'react-dotenv';
 
 const Gamespace = (props) => {
 
-    const { userState } = useContext(UserContext)
-    const [ userId, setUserId ] = userState
+    const { userIdState, userInfoState } = useContext(UserContext)
+    const [ userId, setUserId ] = userIdState
+    const [ userInfo, setUserInfo] = userInfoState
 
 
 //----------------------------Game States----------------------------

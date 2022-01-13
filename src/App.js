@@ -16,13 +16,14 @@ import UserProfile from './components/UserProfile';
 function App() {
 
   const value = useContext(UserContext)
-  const { userState } = useContext(UserContext)
+  const { userIdState, userInfoState } = useContext(UserContext)
   const [userId, setUserId ] = userIdState
+  const [ userInfo, setUserInfo] = userInfoState
 
   const [gameState, setGameState] = useState(true)
   const [playerScore, setPlayerScore] = useState(0)
 
-  const [userInfo, setUserInfo] = useState()
+
 
   const fetchUser = () => {
     const userId = localStorage.getItem('userId')

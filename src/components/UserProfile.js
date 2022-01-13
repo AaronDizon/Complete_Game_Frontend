@@ -6,27 +6,32 @@ import axios from 'axios'
 import env from 'react-dotenv'
 import { Link,  } from "react-router-dom"
 
-const UserProfile = (props) => {
+const UserProfile = () => {
 
-    const { userState } = useContext(UserContext)
-    const [ userId, setUserId ] = userState
-    const [ userInfo, setUserInfo] = userState
+    const { userIdState, userInfoState } = useContext(UserContext)
+    const [ userId, setUserId ] = userIdState
+    const [ userInfo, setUserInfo] = userInfoState
 
-    // const [userInfo, setUserInfo] = useState()
+    const [userScores, setUserScores] = useState()
 
-    // const getInfo = (props) => {
-    //     try {
-    //         axios.get(`${env.BACKEND_URL}/user/${userId}/info`)
-    //         .then((response) => {
-    //             console.log(response)
-    //             setUserInfo(response.data)
-    //         })
-    //     } catch (err) {
-    //         console.log(err)
-    //     }
-    // }
-
-    // useEffect(getInfo, [])
+    const getInfo = async() => {
+        try {
+            axios.get(`${env.BACKEND_URL}/user/${userId}/info`)
+            .then((response) => {
+                console.log(response)
+                const userInformation = {
+                    "username":response.data.username,
+                    "email": response.data.email, 
+                    "tokens": response.data.tokens,
+                    "scores": response.data.scores
+                }
+                setUserInfo(userInformation)
+            })
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    useEffect(getInfo, [])
 
     return (
         <div>
@@ -35,15 +40,29 @@ const UserProfile = (props) => {
             
             <div>
             <h3>Username:</h3>
-            <h3>{props.userInfo.username}</h3>
+            <h3>{userInfo.username}</h3>
             </div>
             <div>
             <h3>Email:</h3>
-            <h3>{props.userInfo.email}</h3>
+            <h3>{userInfo.email}</h3>
             </div>
             <div>
             <h3>Tokens:</h3>
-            <h3>{props.userInfo.tokens}</h3>
+            <h3>{userInfo.tokens}</h3>
+            </div>
+            <div>
+                <h3>Scores: </h3>
+
+                <div>
+                    {userInfo.scores.map((score, i) => {
+                        return (
+                            <div className='singleUserScore'>
+                                <p>{score.score}</p>  
+                                <p>{score.date}</p>  
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
         </div>
     )
