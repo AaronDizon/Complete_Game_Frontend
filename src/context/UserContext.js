@@ -6,10 +6,12 @@ const UserProvider = ({children}) => {
 
     const [userId, setUserId] = useState('')
     const [userInfo, setUserInfo] = useState('')
+    const [color, setColor] = useState('#6FFFE9')
 
     const state = {
         userIdState: [userId, setUserId],
-        userInfoState: [userInfo, setUserInfo]
+        userInfoState: [userInfo, setUserInfo],
+        colorState: [color, setColor]
     }
 
     return (

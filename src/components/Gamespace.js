@@ -7,9 +7,10 @@ import env from 'react-dotenv';
 
 const Gamespace = (props) => {
 
-    const { userIdState, userInfoState } = useContext(UserContext)
+    const { userIdState, userInfoState, colorState } = useContext(UserContext)
     const [ userId, setUserId ] = userIdState
     const [ userInfo, setUserInfo] = userInfoState
+    const [ color, setColor] = colorState
 
 
 //----------------------------Game States----------------------------
@@ -26,7 +27,7 @@ const Gamespace = (props) => {
     const [food, setFood] = useState(initialFood)
     const [speed, setSpeed] = useState(null)
     const [gameOver, setGameOver] = useState(false)
-    const [color, setColor] = useState('#6FFFE9') //#6FFFE9
+    
 
     const [modalIsOpen, setModalIsOpen] = useState(false)
 //-------------------------------------------------------------------
@@ -43,8 +44,6 @@ const Gamespace = (props) => {
             console.log(err)
         }
     }
-
-
 
 
 

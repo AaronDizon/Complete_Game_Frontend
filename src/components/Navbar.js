@@ -34,6 +34,7 @@ const Navbar = () => {
     return (
         <div className='navbar'>
              <Link className="navUserName" to='/userprofile' > { userInfo.username } </Link>
+             <Link className="navColor" to='/color' > Color </Link>
              <p className='logout' onClick={()=> {
                 localStorage.removeItem('userId')
                 setUserId('')

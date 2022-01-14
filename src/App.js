@@ -12,6 +12,7 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Highscores from './pages/Highscores';
 import UserProfile from './components/UserProfile';
+import Color from './pages/Color';
 
 function App() {
 
@@ -23,7 +24,7 @@ function App() {
   const [gameState, setGameState] = useState(true)
   const [playerScore, setPlayerScore] = useState(0)
 
-
+  
 
   const fetchUser = () => {
     const userId = localStorage.getItem('userId')
@@ -81,6 +82,13 @@ function App() {
         <Navigate to='/gamepage' />
         :
         <Login /> 
+        } />
+        <Route path='/color' element=
+        { userId === [] || !userId
+        ?
+        <Navigate to='/' />
+        :
+        <Color /> 
         } />
         <Route path ='/highscores' element={<Highscores />} />
 
