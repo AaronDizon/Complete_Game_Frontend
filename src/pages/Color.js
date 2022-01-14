@@ -33,10 +33,10 @@ const Color = () => {
         <div>
              <Link className='backToGamepage' to='/gamepage'>Go Back</Link>
              <div className='skinsButtons'>
-             <button className='start' onClick={()=>{changeSkin('#6FFFE9')}}>Set Default</button>
+             <Link className='modalButton' to='/gamepage' onClick={()=>{changeSkin('#6FFFE9')}}>Set Default</Link>
                 {skinsList.map((skin, i) => {
                         return (
-                            <button className='start' onClick={()=>{changeSkin(skin.color)}}>{skin.name}</button>
+                            <Link className='modalButton' to='/gamepage'onClick={()=>{changeSkin(skin.color)}}>{skin.name}</Link>
                         )
                     })}
                 </div>

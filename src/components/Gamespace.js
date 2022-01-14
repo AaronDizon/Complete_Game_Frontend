@@ -4,6 +4,7 @@ import { useInterval }from './useInterval';
 import { UserContext } from '../context/UserContext'
 import  axios  from 'axios';
 import env from 'react-dotenv';
+import { Link,  } from "react-router-dom"
 
 const Gamespace = (props) => {
 
@@ -45,6 +46,22 @@ const Gamespace = (props) => {
         }
     }
 
+    const addToken = () => {
+        axios.put(`${env.BACKEND_URL}/user/${userId}/changetoken`)
+        .then((response) => {
+            axios.get(`${env.BACKEND_URL}/user/${userId}/info`)
+                .then((response) => {
+                    console.log(response)
+                    const userInformation = {
+                        "username":response.data.username,
+                        "email": response.data.email, 
+                        "tokens": response.data.tokens,
+                        "scores": response.data.scores
+                    }
+                    setUserInfo(userInformation)
+                })
+        })
+    }
 
 
 //----------------------------Game Logic----------------------------
@@ -119,8 +136,10 @@ const Gamespace = (props) => {
             setDirection([0,0])
             setSpeed(null)
             setGameIsLive(false)
+            addToken()
             setModalIsOpen(true)
             postScore()
+
         }
     }
 
@@ -178,10 +197,12 @@ const Gamespace = (props) => {
                 </div>
             </div>
             <div className="modalContainer">
-                <Modal className='modal' isOpen={modalIsOpen}>
+                <Modal className='modalContent' isOpen={modalIsOpen}>
                     <h1>GAME OVER</h1>
                     <h2>Your Score:   {score}</h2>
-                    <button className='start' onClick={()=>{setModalIsOpen(false)}}>Play Again?</button>
+                    <h2>+1 Token!</h2>
+                    <Link className='modalButton' to='/userprofile' > View Profile </Link>
+                    <Link className='modalButton' to='/gamepage' onClick={()=>{setModalIsOpen(false)}}>Play Again?</Link>
                 </Modal>
             </div>
         </div>

@@ -41,7 +41,7 @@ const Highscores = () => {
     useEffect(fetchScores, [])
 
     return (
-        <div >
+        <div className='highScoresPage' >
             <Link className='backToGamepage' to='/gamepage'>Go Back</Link>
             <div className= 'highscorePage'>
                 <h1>Highest Scores</h1>

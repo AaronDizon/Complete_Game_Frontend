@@ -47,17 +47,25 @@
 
 .navbar {
   display:flex;
-  flex-direction: column;
   justify-content: flex-end;
-  text-decoration: none;
- 
-}
-.navUserName {
   text-decoration: none;
 }
 
-.navUserName:visted {
+.navUserName {
+  text-decoration: none;
+  margin-right:15px;
+}
+
+.navUserName:visited {
   color: #023e8a;
+}
+
+.logout {
+  margin: 0;
+}
+
+.logout:hover {
+  cursor:pointer;
 }
 
 .highscorePageLink{
@@ -65,7 +73,9 @@
   left: 10px;
   top: 10px;
   text-decoration: none;
-
+}
+.highscorePageLink:visited {
+  color: #023e8a;
 }
 
 .backToGamepage {
@@ -73,6 +83,10 @@
   left: 10px;
   top: 10px;
   text-decoration: none;
+}
+
+.backToGamepage:visited {
+  color: #023e8a;
 }
 
 .modalContainer {
@@ -113,6 +127,8 @@
   font-family: 'Press Start 2P', cursive;
 }
 
+
+
 .highscorePage {
   display: flex; 
   flex-direction: column;
@@ -137,17 +153,17 @@
 
 
 .userScoresContainer {
-  border: 10px
+  border-style: blue 5px;
 }
 
 .singleUserScore {
-  width: 90%;
+  width: 100%;
   display: flex; 
   justify-content: center;
 }
 
 .singleUserScore > * {
-  flex-basis: 30%;
+  flex-basis: 22%;
 }
 
 
@@ -166,5 +182,32 @@
 }
 
 .skinsButtons {
-  margin-top: 8vmin;
+  margin-top: 20vmin;
+}
+
+
+.modalButton {
+  cursor: pointer;
+  size: 60px;
+  color: white;
+  margin: 0;
+  font-family: 'Press Start 2P', cursive;
+  margin: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #023e8a;
+  padding:5px;
+  border-radius: 1vmin;
+  border-style: blue 5px;
+}
+
+.modalButton:hover {
+  cursor: pointer;
+  background-color: white;
+  color: #023e8a;
+}
+
+.modalContent{
+  margin-top: 15vmin;
+  padding: 30px;
 }
