@@ -26,6 +26,7 @@ const Gamespace = (props) => {
     const [food, setFood] = useState(initialFood)
     const [speed, setSpeed] = useState(null)
     const [gameOver, setGameOver] = useState(false)
+    const [color, setColor] = useState('#6FFFE9') //#6FFFE9
 
     const [modalIsOpen, setModalIsOpen] = useState(false)
 //-------------------------------------------------------------------
@@ -59,7 +60,7 @@ const Gamespace = (props) => {
         const context  = canvas.current.getContext('2d');
         ctx.current = context;
         ctx.current.clearRect(0,0, canvas.current.width, canvas.current.height)
-        ctx.current.fillStyle='#6FFFE9'
+        ctx.current.fillStyle=color
         ctx.current.fillRect(lizard[0], lizard[1], 20, 20)
         ctx.current.fillStyle='white'
         for (let i = 0; i < clones.length; i++){

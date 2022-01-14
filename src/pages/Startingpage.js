@@ -7,11 +7,11 @@ const Startingpage = () => {
     const { userIdState } = useContext(UserContext)
     const [ userId, setUserId ] = userIdState
     return (
-        <div>
-            <h1>Lizard</h1>
+        <div className='startingPageElements'>
+            <h1 className='landingTitle'>Lizard</h1>
             <div>
-            <Link className='signupLink' to='/signup'>Signup</Link>
-            <Link className='loginLink' to='/login'>Login</Link>
+            <Link className='userLink' to='/signup'>Signup</Link>
+            <Link className='userLink' to='/login'>Login</Link>
             </div>
         </div>
     )

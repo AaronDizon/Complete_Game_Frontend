@@ -38,22 +38,22 @@ const UserProfile = () => {
             <Link className='backToGamepage' to='/gamepage'>Go Back</Link>
             <h1>Your Profile</h1>
             
-            <div>
+            <div className='profileUserName'>
             <h3>Username:</h3>
             <h3>{userInfo.username}</h3>
             </div>
-            <div>
+            <div className='profileEmail'>
             <h3>Email:</h3>
             <h3>{userInfo.email}</h3>
             </div>
-            <div>
-            <h3>Tokens:</h3>
+            <div className='profileTokens'>
+            <h3 >Tokens:</h3>
             <h3>{userInfo.tokens}</h3>
             </div>
             <div>
                 <h3>Scores: </h3>
 
-                <div>
+                <div className='userScoresContainer'>
                     {userInfo.scores.map((score, i) => {
                         return (
                             <div className='singleUserScore'>

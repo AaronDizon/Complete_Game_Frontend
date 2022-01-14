@@ -32,7 +32,7 @@ const Navbar = () => {
 
     useEffect(getInfo, [])
     return (
-        <div>
+        <div className='navbar'>
              <Link className="navUserName" to='/userprofile' > { userInfo.username } </Link>
              <p className='logout' onClick={()=> {
                 localStorage.removeItem('userId')

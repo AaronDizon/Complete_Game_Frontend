@@ -28,7 +28,7 @@ const Login = () => {
     }
                     
     return (
-        <div className='sngLogForm'>
+        <div className="enterInfo">
                 
         <h2>Login</h2>
         

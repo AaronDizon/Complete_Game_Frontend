@@ -102,4 +102,4 @@ export default App;
 //BACKEND_URL=http://localhost:3001
 
 
-//BACKEND_URL=https://lizard-game-backend.herokuapp.com/
+//BACKEND_URL=https://lizard-game-backend.herokuapp.com
