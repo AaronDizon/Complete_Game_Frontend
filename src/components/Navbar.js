@@ -6,9 +6,10 @@ import  axios  from 'axios';
 import env from 'react-dotenv';
 
 const Navbar = () => {
-    const { userIdState, userInfoState } = useContext(UserContext)
+    const { userIdState, userInfoState, colorState } = useContext(UserContext)
     const [ userId, setUserId ] = userIdState
     const [ userInfo, setUserInfo] = userInfoState
+    const [ color, setColor] = colorState
 
     const [user, setUser] = useState()
 
@@ -39,6 +40,7 @@ const Navbar = () => {
                 localStorage.removeItem('userId')
                 setUserId('')
                 setUserInfo([])
+                setColor('#6FFFE9')
             }}>Logout</p>
             <Link className='highscorePageLink' to='/highscores'>Highscores</Link>
         </div>
