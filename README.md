@@ -2,6 +2,8 @@
 
 ### Overview
 
+https://lizard-game.herokuapp.com/
+
 Takes the video game Lizard project from unit 1 and vamps it up with additional features such as User Auth weith CRUD operations, score keeping, highest scores display, and a simplified gacha system where one can change the skin of the lizard with whatever skins they have rolled.  
 
 ### Wireframe
