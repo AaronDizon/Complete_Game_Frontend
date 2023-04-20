@@ -13,6 +13,7 @@ import Login from './pages/Login';
 import Highscores from './pages/Highscores';
 import UserProfile from './components/UserProfile';
 import Color from './pages/Color';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -101,6 +102,7 @@ function App() {
         } />
 
       </Routes>
+      <Footer />
     </div>
   );
 }

@@ -68,6 +68,7 @@ const Gamespace = (props) => {
 
     
 
+
     useInterval(()=> gameLoop(), speed);
 
     const canvas = useRef();
