@@ -1,7 +1,7 @@
 import React from 'react'
 import { GoMarkGithub } from "react-icons/go";
-import { BsLinkedin } from "react-icons/bs"
-import { BsPersonFill } from "react-icons/bs"
+import { BsLinkedin } from "react-icons/bs";
+import { BsPersonFill } from "react-icons/bs";
 
 const Footer = () => {
   return (

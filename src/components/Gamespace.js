@@ -171,10 +171,26 @@ const Gamespace = (props) => {
     }
 
     function createFoodSpot() {
-        setFood(
-                [Math.floor(Math.random() * (20))*20, 
+        let tempfood= []
+        
+            tempfood = [Math.floor(Math.random() * (20))*20, 
                 Math.floor(Math.random() * (20))*20]
-            )
+   
+        for (let i = 0; i < clones.length; i++) {
+            // console.log(i)
+            // console.log(clones[i])
+             console.log(tempfood)
+            console.log(`itteration ${i}`)
+            console.log(clones[i-1])
+            if (tempfood === clones[i-1]) {
+                console.log("clone exists in food spot, changing location")
+                
+                tempfood =    [Math.floor(Math.random() * (20))*20, 
+                    Math.floor(Math.random() * (20))*20]
+                
+            }
+        }
+        setFood(tempfood)
     }
 
     function leaveClone() {
