@@ -7,7 +7,6 @@ import './App.css';
 
 import Startingpage from './pages/Startingpage';
 import Gamepage from './pages/Gamepage'
-import GameOver from './pages/GameOver';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Highscores from './pages/Highscores';
@@ -36,7 +35,6 @@ function App() {
         }
       })
       .then((response) => {
-        // setUser(response.data.user)
         console.log(response)
       })
     }

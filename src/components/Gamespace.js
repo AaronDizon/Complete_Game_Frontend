@@ -86,10 +86,6 @@ const Gamespace = (props) => {
         ctx.current.fillStyle='#9a031e'
         ctx.current.fillRect(food[0], food[1], 20, 20)
     }, [lizard, food]);
-
-    // console.log(ctx)
-    // console.log(food)
-    // console.log(direction)
     
     const gameStart = () => {
         setLizard(initialLizard)
@@ -103,12 +99,7 @@ const Gamespace = (props) => {
         setGameOver(false)
         }
     
-    const stopGame = () => {
-        setDirection([0,0])
-        setSpeed(null)
-        setGameIsLive(false)
-    }
-
+  
     const gameLoop = () => {
         setLizard([(lizard[0]+direction[0]),(lizard[1]+direction[1])])
         if (lizard[0]=== 400) {
